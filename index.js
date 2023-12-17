@@ -27,7 +27,7 @@ inquirer.prompt([
   {
     type: "input",
     message: "Please enter the installation instructions for your project.",
-    name: "Installation Instructions",
+    name: "Installation",
   },
   {
     type: "input",
@@ -44,12 +44,20 @@ inquirer.prompt([
     message: "Please enter test instructions for your project.",
     name: "Tests",
   },
+  {
+    type: "list",
+    message: "Please choose a license for your project.",
+    name: "License",
+    choices: ["Apache", "MIT", "ISC", "GNU GPLv3", "None"],
+  },
+  {
+    type: "input",
+    message: "Please enter your GitHub username.",
+    name: "GitHub",
+  },
+  {
+    type: "input",
+    message: "Please enter your email address.",
+    name: "Email",
+  },
 ]);
-
-// WHEN I choose a license for my application from a list of options
-inquirer.prompt({
-  type: "list",
-  message: "Please choose a license for your project.",
-  name: "License",
-  choices: ["Apache", "MIT", "ISC", "GNU GPLv3", "None"],
-});
