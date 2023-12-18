@@ -67,9 +67,18 @@ const createMarkdown = ({
   github,
   email,
 }) => `
-  # ${projectTitle}
-  ## Description
+  # ${projectTitle} ${licenseBadge(license)}
+  
   ${description}
+
+  ## Table of Contents
+  [Installation](#installation)
+  [Usage](#usage)
+  [Credits](#credits)
+  [Tests](#tests)
+  [License](#license)
+  [Questions](#questions)
+
   ## Installation
   ${installation}
   ## Usage
@@ -82,9 +91,24 @@ const createMarkdown = ({
   ## License
   This application is using the ${license} license.
   ## Questions
-  Please reach out to me with any questions.
+  Please reach out to me with any questions that you may have.
 
   GitHub Username: ${github}
-  
+
   Email: ${email}
   `;
+
+const licenseBadge = (license) => {
+  switch (license) {
+    case "Apache":
+      return "[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)]";
+    case "MIT":
+      return "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]";
+    case "ISC":
+      return "[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)]";
+    case "GNU GPLv3":
+      return "[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)]";
+    default:
+      return "";
+  }
+};
