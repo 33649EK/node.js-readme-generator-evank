@@ -1,6 +1,7 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
 
+// Prompts user for inputs needed to create README file
 inquirer
   .prompt([
     {
@@ -60,12 +61,14 @@ inquirer
       name: "email",
     },
   ])
+  // Creates README file based off of user inputs
   .then((userInputs) =>
     fs.writeFile("README.md", createMarkdown(userInputs), (err) =>
       err ? console.log(err) : console.log(userInputs, "Success!")
     )
   );
 
+// Formats the README file
 const createMarkdown = ({
   projectTitle,
   description,
@@ -77,7 +80,7 @@ const createMarkdown = ({
   github,
   email,
 }) => `
-  # ${projectTitle} ${licenseBadge(license)}
+  # ${projectTitle} ${licenseBadges(license)}
   
   ${description}
 
@@ -106,14 +109,15 @@ const createMarkdown = ({
   ## License
   This application is using the ${license} license.
   ## Questions
-  My GitHub project
-
-  GitHub: [${github}](https://github.com/${github})
+  Please feel free to contact me with any question you may have about this project at my email address or GitHub.
 
   Email: ${email}
+  
+  GitHub: [${github}](https://github.com/${github})
   `;
 
-const licenseBadge = (license) => {
+// Selects a license badge based off of user's license selection
+const licenseBadges = (license) => {
   switch (license) {
     case "Apache":
       return "[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)]";
